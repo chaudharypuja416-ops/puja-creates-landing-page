@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  --background: #fbfefd;
+  --foreground: #18233a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(15, 159, 142, 0.12), transparent 34rem),
+    linear-gradient(180deg, #fbfefd 0%, #ffffff 42%, #f6fbfa 100%);
+  color: var(--foreground);
+  font-family: var(--font-inter), Arial, Helvetica, sans-serif;
+}
+
+::selection {
+  background: rgba(15, 159, 142, 0.22);
+}
+
+.premium-grid {
+  background-image:
+    linear-gradient(rgba(24, 35, 58, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(24, 35, 58, 0.045) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: linear-gradient(to bottom, black, transparent 82%);
+}
+
+.field-focus {
+  @apply focus:border-brand-primary focus:outline-none focus:ring-4 focus:ring-brand-primary/15;
+}
