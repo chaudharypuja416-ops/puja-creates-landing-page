@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { CheckCircle2, MessageCircle, PlayCircle } from "lucide-react";
 import { Header } from "@/components/Header";
+import { siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Thank You",
@@ -9,6 +10,9 @@ export const metadata: Metadata = {
 };
 
 export default function ThankYouPage() {
+  const hasVideo = Boolean(siteConfig.welcomeVideoUrl);
+  const hasWhatsApp = Boolean(siteConfig.whatsappUrl);
+
   return (
     <main className="min-h-screen overflow-hidden">
       <Header />
@@ -42,16 +46,28 @@ export default function ThankYouPage() {
               It explains what we&apos;ll cover during the session and how you can
               get the most value from it.
             </p>
-            <div className="mt-7 flex aspect-video items-center justify-center rounded-3xl border border-dashed border-slate-300 bg-slate-50 text-center">
-              <div>
-                <PlayCircle
-                  aria-hidden="true"
-                  className="mx-auto h-12 w-12 text-brand-primary"
+            <div className="mt-7 overflow-hidden rounded-3xl border border-slate-200 bg-slate-50">
+              {hasVideo ? (
+                <iframe
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                  className="aspect-video w-full"
+                  src={siteConfig.welcomeVideoUrl}
+                  title="Welcome video"
                 />
-                <p className="mt-3 text-sm font-semibold text-slate-500">
-                  Embed your welcome video here.
-                </p>
-              </div>
+              ) : (
+                <div className="flex aspect-video items-center justify-center text-center">
+                  <div className="px-5">
+                    <PlayCircle
+                      aria-hidden="true"
+                      className="mx-auto h-12 w-12 text-brand-primary"
+                    />
+                    <p className="mt-3 text-sm font-semibold text-slate-500">
+                      Your welcome video will appear here before launch.
+                    </p>
+                  </div>
+                </div>
+              )}
             </div>
           </section>
 
@@ -71,12 +87,19 @@ export default function ThankYouPage() {
               The more I understand about your business beforehand, the better I
               can tailor your consultation and customized marketing plan.
             </p>
-            <a
-              href="https://wa.me/YourNumber"
-              className="mt-7 inline-flex min-h-14 w-full items-center justify-center rounded-2xl bg-brand-primary px-6 text-base font-bold text-white shadow-glow transition hover:-translate-y-0.5 hover:bg-[#0b897a] focus:outline-none focus:ring-4 focus:ring-brand-primary/25"
-            >
-              Open WhatsApp
-            </a>
+            {hasWhatsApp ? (
+              <a
+                href={siteConfig.whatsappUrl}
+                className="mt-7 inline-flex min-h-14 w-full items-center justify-center rounded-2xl bg-brand-primary px-6 text-base font-bold text-white shadow-glow transition hover:-translate-y-0.5 hover:bg-[#0b897a] focus:outline-none focus:ring-4 focus:ring-brand-primary/25"
+              >
+                Open WhatsApp
+              </a>
+            ) : (
+              <div className="mt-7 rounded-2xl border border-brand-primary/20 bg-brand-soft px-5 py-4 text-sm font-semibold leading-6 text-brand-ink">
+                Add your WhatsApp click-to-chat link in the site settings when
+                you are ready to enable this button.
+              </div>
+            )}
           </section>
         </div>
 

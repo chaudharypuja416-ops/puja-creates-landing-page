@@ -37,7 +37,7 @@ export function Benefits() {
           {benefits.map(({ icon: Icon, text }) => (
             <article
               key={text}
-              className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-soft"
+              className="rounded-[1.75rem] border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-soft"
             >
               <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-2xl bg-brand-soft text-brand-primary">
                 <Icon aria-hidden="true" className="h-5 w-5" />
