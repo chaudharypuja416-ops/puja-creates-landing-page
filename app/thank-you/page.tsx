@@ -48,13 +48,15 @@ export default function ThankYouPage() {
             </p>
             <div className="mt-7 overflow-hidden rounded-3xl border border-slate-200 bg-slate-50">
               {hasVideo ? (
-                <iframe
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowFullScreen
-                  className="aspect-video w-full"
+                <video
+                  className="aspect-video w-full bg-brand-ink"
+                  controls
+                  playsInline
+                  preload="metadata"
                   src={siteConfig.welcomeVideoUrl}
-                  title="Welcome video"
-                />
+                >
+                  <track kind="captions" />
+                </video>
               ) : (
                 <div className="flex aspect-video items-center justify-center text-center">
                   <div className="px-5">
